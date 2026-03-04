@@ -1,48 +1,130 @@
 # Ice Skates Mod for Vintage Story
 
-Forge skate blades, strap them with hide, leather, or fur, then line them for warmth — and glide across frozen lakes!
+Forge skate blades, strap them up, line them for warmth, sharpen them at your workshop — then glide across frozen lakes!
 
-## Three-Layer Stat System
+## Full Metal Progression
 
-Every pair of ice skates is defined by three independent choices — **blade**, **strap**, and **lining** — each affecting different gameplay stats:
+The mod ships with 4 always-on blade metals and 7 configurable bridging/novelty metals, organized by game tier:
 
-| Layer    | Set During    | Affects                        |
-|----------|---------------|--------------------------------|
-| **Blade** | Crafting     | Ice speed bonus, durability    |
-| **Strap** | Crafting     | Off-ice penalty (control)      |
-| **Lining** | Post-craft upgrade | Warmth, hunger reduction  |
+```
+Gold (+15%, 60 dura)          ← Novelty (config)
+Silver (+18%, 80 dura)        ← Novelty (config)
+Bone (+20%, 120 dura)         ← Always on
+  Copper (+25%, 180 dura)     ← Early-game bridge (config)
+    Tin Bronze (+30%, 250)    ← Mid-game bridge (config)
+    Bismuth Bronze (+30%, 250)← Mid-game bridge (config)
+    Black Bronze (+32%, 280)  ← Mid-game bridge (config)
+      Iron (+40%, 400)        ← Always on
+        Blister Steel (+50%, 480) ← Late-game bridge (config)
+          Meteoric Iron (+55%, 550) ← Always on
+            Steel (+65%, 700)       ← Always on
+```
 
-### Blade → Speed & Durability (from smithing/crafting)
+Gold and silver are intentionally *worse* than bone — they're soft metals, historically useless for blades, included purely for the vanity of skating on precious metal.
 
-| Material        | Ice Speed Bonus | Durability |
-|-----------------|----------------|------------|
-| Bone            | +20%           | 120        |
-| Iron            | +40%           | 400        |
-| Meteoric Iron   | +55%           | 550        |
-| Steel           | +65%           | 700        |
+---
 
-### Strap → Control (from assembly recipe)
+## Configuration
 
-| Material | Off-Ice Penalty | Base Hunger While Skating |
-|----------|----------------|---------------------------|
-| Rawhide  | -20% speed     | +30% hunger drain         |
-| Leather  | -15% speed     | Normal                    |
-| Fur/Pelt | -10% speed     | -20% hunger drain         |
+Config file: `VintagestoryData/ModConfig/IceSkatesConfig.json`
+Compatible with ConfigLib for in-game GUI editing.
 
-### Lining → Warmth & Hunger Reduction (post-craft upgrade)
+```json
+{
+  "EnableEarlyGameBridges": false,
+  "EnableCopper": true,
 
-Applied after crafting, like lantern lining. Hold skates in main hand, lining material in offhand, and right-click.
+  "EnableMidGameBridges": false,
+  "EnableTinBronze": true,
+  "EnableBismuthBronze": false,
+  "EnableBlackBronze": false,
 
-| Material        | Item Code Pattern    | Warmth  | Hunger Reduction |
-|-----------------|----------------------|---------|------------------|
-| Linen           | `game:linen-*`       | +1.0°C  | -5% hunger       |
-| Fur (Pelt)      | `game:pelt-*`        | +2.5°C  | -15% hunger      |
-| Sturdy Leather  | `game:*sturdyleather*` | +2.0°C | -20% hunger      |
-| Wool Cloth      | Wool mod compat      | +3.0°C  | -10% hunger      |
+  "EnableLateGameBridges": false,
+  "EnableBlisterSteel": true,
 
-Lining hunger reduction **stacks** with the strap's base hunger rate. For example, fur strap (-20%) + sturdy leather lining (-20%) = -40% net hunger drain.
+  "EnableNoveltyMetals": false,
+  "EnableSilver": true,
+  "EnableGold": true,
 
-Once lined, skates cannot be re-lined — choose wisely!
+  "WhetstoneRepairPercent": 12,
+  "SharpenerJigRepairPercent": 45,
+  "SharpenerJigMaxUses": 15
+}
+```
+
+Each tier has a **master toggle** (e.g. `EnableMidGameBridges`) plus individual switches for each metal. Both must be `true` for the metal to appear. Disabled metals are fully pruned — recipes removed, items hidden from creative inventory.
+
+**Example configs:**
+
+| Playstyle | Early | Mid | Late | Novelty |
+|-----------|-------|-----|------|---------|
+| Purist (bone→iron→steel only) | off | off | off | off |
+| Smooth progression | copper | tin bronze | blister steel | off |
+| Kitchen sink | copper | all 3 bronzes | blister steel | gold + silver |
+| Roleplay server | off | off | off | gold + silver |
+
+---
+
+## Stat System (Four Layers)
+
+| Layer       | Set During          | Affects                     |
+|-------------|---------------------|-----------------------------|
+| **Blade**   | Crafting            | Ice speed, durability       |
+| **Strap**   | Crafting            | Off-ice penalty, base hunger|
+| **Lining**  | Post-craft upgrade  | Warmth, hunger reduction    |
+| **Sharpening** | Maintenance      | Durability restoration      |
+
+### Blade Stats (complete table)
+
+| Material        | Speed  | Durability | Tier Group  |
+|-----------------|--------|------------|-------------|
+| Gold            | +15%   | 60         | Novelty     |
+| Silver          | +18%   | 80         | Novelty     |
+| Bone            | +20%   | 120        | Always on   |
+| Copper          | +25%   | 180        | Early-game  |
+| Tin Bronze      | +30%   | 250        | Mid-game    |
+| Bismuth Bronze  | +30%   | 250        | Mid-game    |
+| Black Bronze    | +32%   | 280        | Mid-game    |
+| Iron            | +40%   | 400        | Always on   |
+| Blister Steel   | +50%   | 480        | Late-game   |
+| Meteoric Iron   | +55%   | 550        | Always on   |
+| Steel           | +65%   | 700        | Always on   |
+
+### Strap Stats
+
+| Strap   | Off-Ice Penalty | Base Hunger |
+|---------|----------------|-------------|
+| Rawhide | -20% speed     | +30% drain  |
+| Leather | -15% speed     | Normal      |
+| Fur     | -10% speed     | -20% drain  |
+
+### Lining Stats (post-craft upgrade)
+
+Hold skates in main hand, lining in offhand, right-click. Permanent, non-replaceable.
+
+| Lining          | Warmth  | Hunger Reduction |
+|-----------------|---------|------------------|
+| Linen           | +1.0°C  | -5%              |
+| Fur (Pelt)      | +2.5°C  | -15%             |
+| Sturdy Leather  | +2.0°C  | -20%             |
+| Wool Cloth      | +3.0°C  | -10%             |
+
+Lining hunger reduction stacks with strap base rate.
+
+---
+
+## Sharpening
+
+### Whetstone (portable, ~12% repair)
+
+Main hand: skates | Offhand: whetstone | Right-click.
+Damages whetstone by 1 durability. Matches any item with "whetstone" in code — compatible with vanilla 1.22+, RepairMe, Toolsmith, etc.
+
+### Sharpening Jig (workshop, ~45% repair)
+
+Place on surface, right-click while holding skates. 15 uses before the jig breaks.
+Crafted from: `[Plank] [Stone] [Plank] / [Nail] [    ] [Nail]`
+Spawns stone dust particles when sharpening.
 
 ---
 
@@ -55,7 +137,7 @@ Once lined, skates cannot be re-lined — choose wisely!
 [Bone ×2] [Knife]  →  2× Bone Skate Blade
 ```
 
-**Iron / Meteoric Iron / Steel** (smithed on anvil):
+**Metals** (smithed on anvil):
 Heat ingot → place on anvil → select "Ice Skate Blade" → smith → 2× blades per ingot
 
 ### Step 2: Assemble the Skates
@@ -79,6 +161,11 @@ Where `[Strap]` is one of:
 
 You'll hear a cloth rustling sound and see a chat confirmation. The tooltip updates to show the new lining stats.
 
+### Step 4: Maintain (sharpening)
+
+- **Whetstone** (field): Main hand skates, offhand whetstone, right-click (~12% durability restored)
+- **Sharpening Jig** (workshop): Place jig block, right-click while holding skates (~45% durability restored, 15 uses per jig)
+
 ---
 
 ## Example Builds
@@ -101,22 +188,25 @@ IceSkates/
 ├── modinfo.json
 ├── assets/iceskates/
 │   ├── itemtypes/
-│   │   ├── skateblade.json           # Blade component (4 metal variants)
-│   │   └── iceskates.json            # Assembled skates (4 blades × 3 straps = 12 variants)
+│   │   ├── skateblade.json            # 11 blade variants
+│   │   └── iceskates.json             # 33 assembled variants (11 × 3)
+│   ├── blocktypes/
+│   │   └── sharpenerjig.json          # Sharpening jig block
 │   ├── recipes/
-│   │   ├── smithing/skateblade.json  # Anvil recipe for metal blades
+│   │   ├── smithing/skateblade.json   # Anvil recipe (10 metals)
 │   │   └── grid/
-│   │       ├── skateblade-bone.json  # Bone + knife → blade
-│   │       ├── iceskates-rawhide.json
-│   │       ├── iceskates-leather.json
-│   │       └── iceskates-fur.json
-│   ├── shapes/item/                  # Placeholder models
-│   ├── textures/item/                # (You create these)
-│   └── lang/en.json
+│   │       ├── skateblade-bone.json
+│   │       ├── iceskates-{strap}.json # 3 assembly recipes
+│   │       └── sharpenerjig.json
+│   ├── shapes/{item,block}/           # Placeholder models
+│   └── lang/en.json                   # 44 item names + descriptions
 └── src/
-    ├── IceSkatesMod.cs               # Entry point
-    ├── ItemIceSkates.cs              # Item class: lining upgrade, stats, tooltip
-    └── EntityBehaviorIceSkating.cs   # Behavior: ice detection, speed, hunger, particles
+    ├── IceSkatesConfig.cs             # Grouped config (4 tier groups)
+    ├── IceSkatesMod.cs                # Entry: config, registration, recipe pruning
+    ├── ItemIceSkates.cs               # Lining + whetstone + tooltips
+    ├── EntityBehaviorIceSkating.cs    # Ice detection, speed, hunger, particles
+    ├── BlockSharpenerJig.cs           # Jig block interaction
+    └── BlockEntitySharpenerJig.cs     # Jig use tracking
 ```
 
 ## Architecture
@@ -130,7 +220,7 @@ itemstack.Attributes.SetString("lining", "pelt")
 ```
 
 Benefits:
-- No variant explosion (12 base variants instead of 60)
+- No variant explosion (33 base variants instead of 165)
 - Upgrade is purely C# — no extra recipes needed
 - Lining state persists through inventory operations
 - Easy to extend with new lining types
@@ -173,13 +263,11 @@ Read foot slot → is ItemIceSkates?
 
 ## Textures Needed
 
-**Blades** (16×16 or 32×32 PNG in `textures/item/`):
-- `skateblade-bone.png`, `skateblade-iron.png`, `skateblade-meteoriciron.png`, `skateblade-steel.png`
+11 blade textures + 3 strap textures in `textures/item/`:
+- `skateblade-{bone,copper,tinbronze,bismuthbronze,blackbronze,iron,blistersteel,meteoriciron,steel,silver,gold}.png`
+- `skatestrap-{rawhide,leather,fur}.png`
 
-**Straps**:
-- `skatestrap-rawhide.png`, `skatestrap-leather.png`, `skatestrap-fur.png`
-
-Tip: reference vanilla textures in `game:textures/item/` for consistent palette.
+Tip: Match vanilla tool head color palettes. Silver and gold should be recognizably shiny/precious.
 
 ## Development Setup
 
@@ -193,10 +281,10 @@ Quick test: Drop entire folder with `.cs` files into `Mods/` — VS compiles at 
 
 ## Future Ideas
 
-- [ ] Proper 3D models + wearable shape on player feet
-- [ ] Skating sound effects (blade scraping on ice)
-- [ ] Momentum/slide mechanic (reduced friction on ice)
-- [ ] Allow re-lining by removing old lining with shears (returns scrap)
-- [ ] Visual indicator on model for lined vs unlined skates
+- [ ] 3D models + wearable shapes on player feet
+- [ ] Skating sound effects
+- [ ] Momentum/slide mechanics
+- [ ] Hook into 1.22 buff system (sharpening → crit chance on ice?)
+- [ ] Visual model change for lined vs unlined
+- [ ] Allow re-lining with shears
 - [ ] Handbook illustrations
-- [ ] Integration with modded ice blocks
