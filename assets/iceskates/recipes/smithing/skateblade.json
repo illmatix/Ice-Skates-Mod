@@ -1,0 +1,34 @@
+{
+  "ingredient": {
+    "type": "item",
+    "code": "game:ingot-{metal}",
+    "name": "metal",
+    "allowedVariants": ["copper", "tinbronze", "bismuthbronze", "blackbronze", "iron", "blistersteel", "meteoriciron", "steel", "silver", "gold"]
+  },
+  "pattern": [
+    [
+      "_______",
+      "_______",
+      "_______",
+      "_______",
+      "_______",
+      "_______",
+      "_______"
+    ],
+    [
+      "_______",
+      "_______",
+      "#_____#",
+      "#######",
+      "#######",
+      "_______",
+      "_______"
+    ]
+  ],
+  "name": "Ice Skate Blade",
+  "output": {
+    "type": "item",
+    "code": "iceskates:skateblade-{metal}",
+    "quantity": 2
+  }
+}

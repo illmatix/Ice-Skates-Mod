@@ -1,0 +1,14 @@
+{
+  "ingredientPattern": "BK",
+  "ingredients": {
+    "B": { "type": "item", "code": "game:bone", "quantity": 2 },
+    "K": { "type": "item", "code": "game:knife-*", "isTool": true }
+  },
+  "width": 2,
+  "height": 1,
+  "output": {
+    "type": "item",
+    "code": "iceskates:skateblade-bone",
+    "quantity": 2
+  }
+}

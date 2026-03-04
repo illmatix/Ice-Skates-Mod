@@ -1,0 +1,15 @@
+{
+  "ingredientPattern": "FSF,_B_",
+  "ingredients": {
+    "F": { "type": "item", "code": "game:pelt-*" },
+    "S": { "type": "item", "code": "game:stick-*" },
+    "B": { "type": "item", "code": "iceskates:skateblade-{blade}", "name": "blade" }
+  },
+  "width": 3,
+  "height": 2,
+  "output": {
+    "type": "item",
+    "code": "iceskates:iceskates-{blade}-fur",
+    "quantity": 1
+  }
+}

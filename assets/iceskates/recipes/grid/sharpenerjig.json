@@ -1,0 +1,15 @@
+{
+  "ingredientPattern": "BSB,N_N",
+  "ingredients": {
+    "B": { "type": "item", "code": "game:plank-*" },
+    "S": { "type": "block", "code": "game:stone-*" },
+    "N": { "type": "item", "code": "game:nail-*" }
+  },
+  "width": 3,
+  "height": 2,
+  "output": {
+    "type": "block",
+    "code": "iceskates:sharpenerjig",
+    "quantity": 1
+  }
+}
