@@ -27,6 +27,7 @@ project.lock.json
 
 # JetBrains Rider
 .idea/
+.run/
 *.sln.iml
 
 # VS Code

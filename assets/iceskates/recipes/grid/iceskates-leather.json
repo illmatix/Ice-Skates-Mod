@@ -1,0 +1,15 @@
+{
+  "ingredientPattern": "LSL,_B_",
+  "ingredients": {
+    "L": { "type": "item", "code": "game:leather-*" },
+    "S": { "type": "item", "code": "game:stick-*" },
+    "B": { "type": "item", "code": "iceskates:skateblade-{blade}", "name": "blade" }
+  },
+  "width": 3,
+  "height": 2,
+  "output": {
+    "type": "item",
+    "code": "iceskates:iceskates-{blade}-leather",
+    "quantity": 1
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "editor": { "allAngles": false, "entityTextureMode": false },
+  "textureWidth": 32,
+  "textureHeight": 32,
+  "textures": {},
+  "elements": [
+    {
+      "name": "Blade",
+      "from": [ 6, 0, 1 ],
+      "to": [ 10, 1, 14 ],
+      "faces": {
+        "north": { "texture": "#blade", "uv": [ 0, 0, 4, 1 ] },
+        "east":  { "texture": "#blade", "uv": [ 0, 0, 13, 1 ] },
+        "south": { "texture": "#blade", "uv": [ 0, 0, 4, 1 ] },
+        "west":  { "texture": "#blade", "uv": [ 0, 0, 13, 1 ] },
+        "up":    { "texture": "#blade", "uv": [ 0, 0, 4, 13 ] },
+        "down":  { "texture": "#blade", "uv": [ 0, 0, 4, 13 ] }
+      }
+    },
+    {
+      "name": "BladeTip",
+      "from": [ 7, 0, 14 ],
+      "to": [ 9, 1, 16 ],
+      "faces": {
+        "north": { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+        "east":  { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+        "south": { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+        "west":  { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+        "up":    { "texture": "#blade", "uv": [ 4, 0, 6, 2 ] },
+        "down":  { "texture": "#blade", "uv": [ 4, 0, 6, 2 ] }
+      }
+    },
+    {
+      "name": "Sole",
+      "from": [ 4, 1, 2 ],
+      "to": [ 12, 3, 14 ],
+      "faces": {
+        "north": { "texture": "#strap", "uv": [ 0, 0, 8, 2 ] },
+        "east":  { "texture": "#strap", "uv": [ 0, 0, 12, 2 ] },
+        "south": { "texture": "#strap", "uv": [ 0, 0, 8, 2 ] },
+        "west":  { "texture": "#strap", "uv": [ 0, 0, 12, 2 ] },
+        "up":    { "texture": "#strap", "uv": [ 0, 0, 8, 12 ] },
+        "down":  { "texture": "#strap", "uv": [ 0, 0, 8, 12 ] }
+      }
+    },
+    {
+      "name": "ToeBox",
+      "from": [ 4, 3, 10 ],
+      "to": [ 12, 7, 14 ],
+      "faces": {
+        "north": { "texture": "#strap", "uv": [ 8, 0, 16, 4 ] },
+        "east":  { "texture": "#strap", "uv": [ 8, 0, 12, 4 ] },
+        "south": { "texture": "#strap", "uv": [ 8, 0, 16, 4 ] },
+        "west":  { "texture": "#strap", "uv": [ 8, 0, 12, 4 ] },
+        "up":    { "texture": "#strap", "uv": [ 8, 4, 16, 8 ] },
+        "down":  { "texture": "#strap", "uv": [ 8, 4, 16, 8 ] }
+      }
+    },
+    {
+      "name": "Heel",
+      "from": [ 4, 3, 2 ],
+      "to": [ 12, 6, 5 ],
+      "faces": {
+        "north": { "texture": "#strap", "uv": [ 16, 0, 24, 3 ] },
+        "east":  { "texture": "#strap", "uv": [ 16, 0, 19, 3 ] },
+        "south": { "texture": "#strap", "uv": [ 16, 0, 24, 3 ] },
+        "west":  { "texture": "#strap", "uv": [ 16, 0, 19, 3 ] },
+        "up":    { "texture": "#strap", "uv": [ 16, 3, 24, 6 ] },
+        "down":  { "texture": "#strap", "uv": [ 16, 3, 24, 6 ] }
+      }
+    },
+    {
+      "name": "Ankle",
+      "from": [ 4, 3, 5 ],
+      "to": [ 12, 6, 10 ],
+      "faces": {
+        "north": { "texture": "#strap", "uv": [ 0, 12, 8, 15 ] },
+        "east":  { "texture": "#strap", "uv": [ 0, 12, 5, 15 ] },
+        "south": { "texture": "#strap", "uv": [ 0, 12, 8, 15 ] },
+        "west":  { "texture": "#strap", "uv": [ 0, 12, 5, 15 ] },
+        "up":    { "texture": "#strap", "uv": [ 0, 15, 8, 20 ] },
+        "down":  { "texture": "#strap", "uv": [ 0, 15, 8, 20 ] }
+      }
+    },
+    {
+      "name": "Shaft",
+      "from": [ 5, 6, 3 ],
+      "to": [ 11, 12, 10 ],
+      "faces": {
+        "north": { "texture": "#strap", "uv": [ 8, 8, 14, 14 ] },
+        "east":  { "texture": "#strap", "uv": [ 8, 8, 15, 14 ] },
+        "south": { "texture": "#strap", "uv": [ 8, 8, 14, 14 ] },
+        "west":  { "texture": "#strap", "uv": [ 8, 8, 15, 14 ] },
+        "up":    { "texture": "#strap", "uv": [ 8, 14, 14, 21 ] },
+        "down":  { "texture": "#strap", "uv": [ 8, 14, 14, 21 ] }
+      }
+    },
+    {
+      "name": "Cuff",
+      "from": [ 4, 12, 3 ],
+      "to": [ 12, 13, 10 ],
+      "faces": {
+        "north": { "texture": "#strap", "uv": [ 16, 8, 24, 9 ] },
+        "east":  { "texture": "#strap", "uv": [ 16, 8, 23, 9 ] },
+        "south": { "texture": "#strap", "uv": [ 16, 8, 24, 9 ] },
+        "west":  { "texture": "#strap", "uv": [ 16, 8, 23, 9 ] },
+        "up":    { "texture": "#strap", "uv": [ 16, 9, 24, 16 ] },
+        "down":  { "texture": "#strap", "uv": [ 16, 9, 24, 16 ] }
+      }
+    },
+    {
+      "name": "Tongue",
+      "from": [ 6, 6, 10 ],
+      "to": [ 10, 12, 11 ],
+      "faces": {
+        "north": { "texture": "#strap", "uv": [ 24, 0, 28, 6 ] },
+        "east":  { "texture": "#strap", "uv": [ 24, 0, 25, 6 ] },
+        "south": { "texture": "#strap", "uv": [ 24, 0, 28, 6 ] },
+        "west":  { "texture": "#strap", "uv": [ 24, 0, 25, 6 ] },
+        "up":    { "texture": "#strap", "uv": [ 24, 6, 28, 7 ] },
+        "down":  { "texture": "#strap", "uv": [ 24, 6, 28, 7 ] }
+      }
+    }
+  ]
+}

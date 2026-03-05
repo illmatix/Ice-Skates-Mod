@@ -1,0 +1,15 @@
+{
+  "ingredientPattern": "HSH,_B_",
+  "ingredients": {
+    "H": { "type": "item", "code": "game:hide-*" },
+    "S": { "type": "item", "code": "game:stick-*" },
+    "B": { "type": "item", "code": "iceskates:skateblade-{blade}", "name": "blade" }
+  },
+  "width": 3,
+  "height": 2,
+  "output": {
+    "type": "item",
+    "code": "iceskates:iceskates-{blade}-rawhide",
+    "quantity": 1
+  }
+}
