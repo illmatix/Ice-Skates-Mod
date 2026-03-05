@@ -1,0 +1,54 @@
+# PR path-based labeling rules (used by actions/labeler)
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'docs/**'
+      - 'README.md'
+      - 'CLAUDE.md'
+
+assets:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'assets/**'
+
+crafting:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'assets/iceskates/recipes/**'
+
+config:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/IceSkatesConfig.cs'
+
+skating:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/EntityBehaviorIceSkating.cs'
+      - 'src/HudIceSkatesDebug.cs'
+
+lining:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/ItemIceSkates.cs'
+
+sharpening:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/BlockSharpenerJig.cs'
+      - 'src/BlockEntitySharpenerJig.cs'
+
+creative-tools:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/ItemIceRinkCreator.cs'
+
+chore:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/**'
+      - '.gitignore'
+      - 'global.json'
+      - '*.csproj'
+      - '*.slnx'
