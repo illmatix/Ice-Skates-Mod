@@ -35,6 +35,7 @@ Visual and audio improvements to make skating feel good.
 New mechanics that add strategic choices.
 
 - [ ] Momentum/slide mechanics (inertia on ice)
+- [ ] Strap-based on-ice control (rawhide = wider turns, fur = tighter carving)
 - [ ] Allow re-lining with shears (replace existing lining)
 - [ ] Durability warning (chat message or visual cue when low)
 - [ ] Skating on rivers vs lakes (different friction?)
