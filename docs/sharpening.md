@@ -20,6 +20,8 @@ Best for quick field repairs when you're out exploring.
 [Nail ] [     ] [Nail ]
 ```
 
+**Accepted stones:** Granite, Andesite, Basalt, Quartzite — hard, abrasive stones suitable for sharpening. Softer stones (sandstone, limestone, chalk, etc.) won't work.
+
 Spawns stone dust particles when sharpening.
 
 Best for bulk maintenance at your base — one jig handles many pairs of skates before wearing out.

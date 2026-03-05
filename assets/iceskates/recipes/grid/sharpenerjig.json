@@ -2,7 +2,7 @@
   "ingredientPattern": "BSB,N_N",
   "ingredients": {
     "B": { "type": "item", "code": "game:plank-*" },
-    "S": { "type": "block", "code": "game:stone-*" },
+    "S": { "type": "block", "code": "game:stone-*", "allowedVariants": ["granite", "andesite", "basalt", "quartzite"] },
     "N": { "type": "item", "code": "game:nail-*" }
   },
   "width": 3,

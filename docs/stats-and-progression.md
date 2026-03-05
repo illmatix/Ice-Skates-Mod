@@ -5,17 +5,17 @@
 The mod ships with 4 always-on blade metals and 7 configurable bridging/novelty metals, organized by game tier:
 
 ```
-Gold (+15%, 60 dura)          ← Novelty (config)
-Silver (+18%, 80 dura)        ← Novelty (config)
-Bone (+20%, 120 dura)         ← Always on
-  Copper (+25%, 180 dura)     ← Early-game bridge (config)
-    Tin Bronze (+30%, 250)    ← Mid-game bridge (config)
-    Bismuth Bronze (+30%, 250)← Mid-game bridge (config)
-    Black Bronze (+32%, 280)  ← Mid-game bridge (config)
-      Iron (+40%, 400)        ← Always on
-        Blister Steel (+50%, 480) ← Late-game bridge (config)
+Gold (+10%, 60 dura)          ← Novelty (config)
+Silver (+14%, 80 dura)        ← Novelty (config)
+Bone (+12%, 120 dura)         ← Always on
+  Copper (+18%, 180 dura)     ← Early-game bridge (config)
+    Tin Bronze (+26%, 250)    ← Mid-game bridge (config)
+    Bismuth Bronze (+26%, 250)← Mid-game bridge (config)
+    Black Bronze (+30%, 280)  ← Mid-game bridge (config)
+      Iron (+38%, 400)        ← Always on
+        Blister Steel (+48%, 480) ← Late-game bridge (config)
           Meteoric Iron (+55%, 550) ← Always on
-            Steel (+65%, 700)       ← Always on
+            Steel (+60%, 700)       ← Always on
 ```
 
 Gold and silver are intentionally *worse* than bone — they're soft metals, historically useless for blades, included purely for the vanity of skating on precious metal.
@@ -35,25 +35,25 @@ Gold and silver are intentionally *worse* than bone — they're soft metals, his
 
 | Material       | Speed | Durability | Tier Group |
 |----------------|-------|------------|------------|
-| Gold           | +15%  | 60         | Novelty    |
-| Silver         | +18%  | 80         | Novelty    |
-| Bone           | +20%  | 120        | Always on  |
-| Copper         | +25%  | 180        | Early-game |
-| Tin Bronze     | +30%  | 250        | Mid-game   |
-| Bismuth Bronze | +30%  | 250        | Mid-game   |
-| Black Bronze   | +32%  | 280        | Mid-game   |
-| Iron           | +40%  | 400        | Always on  |
-| Blister Steel  | +50%  | 480        | Late-game  |
+| Gold           | +10%  | 60         | Novelty    |
+| Silver         | +14%  | 80         | Novelty    |
+| Bone           | +12%  | 120        | Always on  |
+| Copper         | +18%  | 180        | Early-game |
+| Tin Bronze     | +26%  | 250        | Mid-game   |
+| Bismuth Bronze | +26%  | 250        | Mid-game   |
+| Black Bronze   | +30%  | 280        | Mid-game   |
+| Iron           | +38%  | 400        | Always on  |
+| Blister Steel  | +48%  | 480        | Late-game  |
 | Meteoric Iron  | +55%  | 550        | Always on  |
-| Steel          | +65%  | 700        | Always on  |
+| Steel          | +60%  | 700        | Always on  |
 
 ### Strap Stats
 
 | Strap   | Off-Ice Penalty | Base Hunger    |
 |---------|-----------------|----------------|
-| Rawhide | -20% speed      | +30% drain     |
-| Leather | -15% speed      | Normal         |
-| Fur     | -10% speed      | -20% drain     |
+| Rawhide | -30% speed      | +45% drain     |
+| Leather | -18% speed      | Normal         |
+| Fur     | -8% speed       | -25% drain     |
 
 ### Lining Stats (post-craft upgrade)
 
@@ -61,9 +61,19 @@ Hold skates in main hand, lining in offhand, right-click. Permanent, non-replace
 
 | Lining         | Warmth | Hunger Reduction |
 |----------------|--------|------------------|
-| Linen          | +1.0°C | -5%              |
-| Fur (Pelt)     | +2.5°C | -15%             |
-| Sturdy Leather | +2.0°C | -20%             |
-| Wool Cloth     | +3.0°C | -10%             |
+| Linen          | +1.0°C | -8%              |
+| Fur (Pelt)     | +2.5°C | -18%             |
+| Sturdy Leather | +2.0°C | -25%             |
+| Wool Cloth     | +3.0°C | -12%             |
 
 Lining hunger reduction stacks with strap base rate.
+
+### Off-Ice Penalties
+
+Walking on land while wearing skates is awkward and damaging:
+
+- **Speed:** Reduced by strap penalty (rawhide -30%, leather -18%, fur -8%)
+- **Durability:** Drains 2× faster than on ice (every 2s vs 4s) — blades on hard ground wear fast
+- **Hunger:** Increases proportional to strap penalty (half the penalty value as hunger drain while moving)
+
+Take your skates off when you're done skating!
