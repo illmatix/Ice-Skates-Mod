@@ -95,6 +95,12 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 - Config uses master toggle + individual toggle pattern (both must be true)
 - Disabled metals get fully pruned: recipes removed, items hidden from creative
 
+## Git Workflow
+- **Never commit directly to the current branch** unless the changes belong there
+- Always create a new branch from `main` for new work: `feature/`, `fix/`, `docs/`, `refactor/`, `chore/`
+- `main` is protected — all changes go through PRs with approval
+- See `docs/branching.md` for full details
+
 ## Documentation
 - `README.md` is player-facing — keep it concise
 - Detailed docs live in `docs/` — update them when adding features
