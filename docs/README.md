@@ -12,3 +12,4 @@ Detailed reference docs for the Ice Skates mod for Vintage Story.
 - [Architecture](architecture.md) — Lining system design, interaction/stat flow, project structure
 - [Development](development.md) — Dev setup, texture requirements, future ideas
 - [Branching](branching.md) — Git branching strategy and PR workflow
+- [Roadmap](roadmap.md) — Release milestones and planned features
