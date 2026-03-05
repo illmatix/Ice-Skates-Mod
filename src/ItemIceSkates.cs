@@ -43,10 +43,10 @@ namespace IceSkates
         {
             return lining switch
             {
-                "linen" => -0.05f,
-                "pelt" => -0.15f,
-                "sturdyleather" => -0.20f,
-                "wool" => -0.10f,
+                "linen" => -0.08f,
+                "pelt" => -0.18f,
+                "sturdyleather" => -0.25f,
+                "wool" => -0.12f,
                 _ => 0f
             };
         }
