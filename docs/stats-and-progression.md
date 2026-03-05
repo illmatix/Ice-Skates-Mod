@@ -67,3 +67,13 @@ Hold skates in main hand, lining in offhand, right-click. Permanent, non-replace
 | Wool Cloth     | +3.0°C | -12%             |
 
 Lining hunger reduction stacks with strap base rate.
+
+### Off-Ice Penalties
+
+Walking on land while wearing skates is awkward and damaging:
+
+- **Speed:** Reduced by strap penalty (rawhide -30%, leather -18%, fur -8%)
+- **Durability:** Drains 2× faster than on ice (every 2s vs 4s) — blades on hard ground wear fast
+- **Hunger:** Increases proportional to strap penalty (half the penalty value as hunger drain while moving)
+
+Take your skates off when you're done skating!

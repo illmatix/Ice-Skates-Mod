@@ -27,6 +27,8 @@ namespace IceSkates
 
         private float durabilityAccumulator = 0f;
         private const float DURABILITY_INTERVAL = 4.0f;
+        private const float OFF_ICE_DURABILITY_INTERVAL = 2.0f;
+        private float offIceDurabilityAccumulator = 0f;
         private float particleAccumulator = 0f;
         private const float PARTICLE_INTERVAL = 0.08f;
 
@@ -346,14 +348,41 @@ namespace IceSkates
             }
             else
             {
-                // Off ice
+                // Off ice — walking in skates is awkward and punishing
+                float offIceHungerMod = Math.Abs(offIcePenalty) * 0.5f;
+
                 if (isServer)
                 {
                     playerEntity.Stats.Set(SPEED_STAT_KEY, "walkspeed", offIcePenalty, false);
-                    playerEntity.Stats.Remove(HUNGER_STAT_KEY, "hungerrate");
+
+                    // Hunger drain while moving off-ice (proportional to penalty)
+                    double motionX = playerEntity.ServerPos.Motion.X;
+                    double motionZ = playerEntity.ServerPos.Motion.Z;
+                    double offIceSpeed = Math.Sqrt(motionX * motionX + motionZ * motionZ);
+                    if (offIceSpeed > 0.005)
+                        playerEntity.Stats.Set(HUNGER_STAT_KEY, "hungerrate", offIceHungerMod, false);
+                    else
+                        playerEntity.Stats.Remove(HUNGER_STAT_KEY, "hungerrate");
                 }
 
-                DebugCurrentHungerMod = 0f;
+                DebugCurrentHungerMod = offIceHungerMod;
+
+                // Faster durability drain off-ice (blades on hard ground)
+                if (isServer)
+                {
+                    double motionX = playerEntity.ServerPos.Motion.X;
+                    double motionZ = playerEntity.ServerPos.Motion.Z;
+                    double offIceSpeed = Math.Sqrt(motionX * motionX + motionZ * motionZ);
+                    if (offIceSpeed > 0.005)
+                    {
+                        offIceDurabilityAccumulator += HEAVY_TICK_INTERVAL;
+                        if (offIceDurabilityAccumulator >= OFF_ICE_DURABILITY_INTERVAL)
+                        {
+                            offIceDurabilityAccumulator = 0f;
+                            DamageSkates(footSlot, playerEntity);
+                        }
+                    }
+                }
 
                 // Transition off ice while skating
                 if (isSkating)
