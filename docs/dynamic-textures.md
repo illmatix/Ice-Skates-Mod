@@ -2,7 +2,17 @@
 
 ## Overview
 
-Ice Skates generates all blade and strap textures at runtime using palette-swapped noise templates, matching the vanilla Vintage Story art style. This replaces the previous 14 static flat-color PNGs and means adding a new metal requires only a 5-color palette entry — no hand-crafted PNG needed.
+Ice Skates uses a **static-first** texture strategy: hand-crafted PNGs in `assets/iceskates/textures/item/` are used when present, and the runtime generator fills in any gaps. This means you can override any texture with a static file, while new metals only need a 5-color palette entry.
+
+## Static Texture Priority
+
+During `AssetsLoaded`, the generator checks each texture location with `api.Assets.TryGet()` before generating. If a static PNG already exists at the expected path, it is kept and generation is skipped for that texture.
+
+**Naming convention for static overrides:**
+- Blades: `assets/iceskates/textures/item/skateblade-{metal}.png` (e.g. `skateblade-iron.png`)
+- Straps: `assets/iceskates/textures/item/skatestrap-{strap}.png` (e.g. `skatestrap-leather.png`)
+
+Static textures should be 32x32 to match the generated resolution.
 
 ## How It Works
 
@@ -16,17 +26,18 @@ TextureGenerator.cs
 ├── 11 metal palettes (5 colors each)
 ├── 3 strap palettes (5 colors each)
 └── GenerateAndInject(api)
-    ├── For each metal: noise[i] → palette[metal][noise[i]] → pixels → PNG → asset
-    └── For each strap: noise[i] → palette[strap][noise[i]] → pixels → PNG → asset
+    ├── For each metal: skip if static exists, else generate
+    └── For each strap: skip if static exists, else generate
 ```
 
 During `AssetsLoaded`, the generator:
 1. Iterates each metal/strap
-2. Maps the noise template through the material's 5-color palette
-3. Encodes a 16x16 PNG via SkiaSharp
-4. Injects it into the asset manager via `api.Assets.Add()`
+2. Checks if a static PNG already exists — if so, skips it
+3. Maps the 16x16 noise template through the material's 5-color palette
+4. Upscales to 32x32 via nearest-neighbor (each noise pixel becomes a 2x2 block)
+5. Encodes the PNG via SkiaSharp and injects it via `api.Assets.Add()`
 
-Item type JSON texture references (`skateblade-{blade}`, `skatestrap-{strap}`) resolve to the injected assets — no changes needed in item/recipe definitions.
+Item type JSON texture references (`skateblade-{blade}`, `skatestrap-{strap}`) resolve to either the static or injected assets — no changes needed in item/recipe definitions.
 
 ## Vanilla VS Art Style
 
@@ -92,13 +103,15 @@ The blade height was increased from 1px to 2px for visibility, and all boot elem
 
 ## Adding a New Metal
 
-To add a new blade metal texture, add a single palette entry to `MetalPalettes` in `TextureGenerator.cs`:
+**Option A — Generated texture (easiest):** Add a palette entry to `MetalPalettes` in `TextureGenerator.cs`:
 
 ```csharp
 ["newmetal"] = new uint[] { 0xC0_dark, 0xC1_shadow, 0xC2_base, 0xC3_light, 0xC4_bright },
 ```
 
 The noise template is shared across all metals — only the palette differs.
+
+**Option B — Static texture override:** Place a 32x32 PNG at `assets/iceskates/textures/item/skateblade-newmetal.png`. The generator will detect it and skip generation for that metal. You still need a palette entry if you want the generator as a fallback.
 
 ## Future: Strip Crafting (Phase 2)
 

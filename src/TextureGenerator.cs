@@ -8,12 +8,14 @@ using Vintagestory.API.Common;
 namespace IceSkates
 {
     /// <summary>
-    /// Generates mottled, vanilla-style 16x16 textures for blades and straps
-    /// at runtime via palette-swapped noise templates, replacing static PNGs.
+    /// Generates mottled, vanilla-style 32x32 textures for blades and straps
+    /// at runtime via palette-swapped noise templates. Static PNGs in
+    /// assets/iceskates/textures/item/ take priority when present.
     /// </summary>
     public static class TextureGenerator
     {
-        private const int Size = 16;
+        private const int Size = 32;
+        private const int NoiseSize = 16;
 
         #region Noise Templates (16x16, values 0-4)
 
@@ -133,15 +135,17 @@ namespace IceSkates
         {
             foreach (var kvp in MetalPalettes)
             {
-                byte[] png = GeneratePng(MetalNoise, kvp.Value);
                 var loc = new AssetLocation("iceskates", "textures/item/skateblade-" + kvp.Key + ".png");
+                if (api.Assets.TryGet(loc) != null) continue;
+                byte[] png = GeneratePng(MetalNoise, kvp.Value);
                 api.Assets.Add(loc, new GeneratedAsset(png, loc));
             }
 
             foreach (var kvp in StrapData)
             {
-                byte[] png = GeneratePng(kvp.Value.Noise, kvp.Value.Palette);
                 var loc = new AssetLocation("iceskates", "textures/item/skatestrap-" + kvp.Key + ".png");
+                if (api.Assets.TryGet(loc) != null) continue;
+                byte[] png = GeneratePng(kvp.Value.Noise, kvp.Value.Palette);
                 api.Assets.Add(loc, new GeneratedAsset(png, loc));
             }
         }
@@ -153,7 +157,7 @@ namespace IceSkates
             {
                 for (int x = 0; x < Size; x++)
                 {
-                    uint c = palette[noise[y * Size + x]];
+                    uint c = palette[noise[y * NoiseSize / Size * NoiseSize + x * NoiseSize / Size]];
                     byte r = (byte)((c >> 16) & 0xFF);
                     byte g = (byte)((c >> 8) & 0xFF);
                     byte b = (byte)(c & 0xFF);
