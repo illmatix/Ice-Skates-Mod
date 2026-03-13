@@ -44,7 +44,7 @@
   </ItemGroup>
 
   <!-- Copy built DLL into the mod folder for testing -->
-  <Target Name="CopyToMods" AfterTargets="Build">
+  <Target Name="CopyToMods" AfterTargets="Build" Condition="Exists('$(VintageStoryDataPath)')">
     <PropertyGroup>
       <ModOutputDir>$(VintageStoryDataPath)/Mods/IceSkates</ModOutputDir>
     </PropertyGroup>

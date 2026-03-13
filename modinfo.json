@@ -4,7 +4,7 @@
   "name": "Ice Skates",
   "authors": ["illmatix"],
   "description": "Forge ice skate blades, strap them up with hide, leather, or fur, and glide across frozen lakes!",
-  "version": "1.0.0",
+  "version": "0.0.0-dev",
   "requiredOnClient": true,
   "dependencies": {
     "game": ""
