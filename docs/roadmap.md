@@ -34,11 +34,43 @@ Visual and audio improvements to make skating feel good.
 
 New mechanics that add strategic choices.
 
+- [ ] Strip crafting mechanic (see below)
 - [ ] Momentum/slide mechanics (inertia on ice)
 - [ ] Strap-based on-ice control (rawhide = wider turns, fur = tighter carving)
 - [ ] Allow re-lining with shears (replace existing lining)
 - [ ] Durability warning (chat message or visual cue when low)
 - [ ] Skating on rivers vs lakes (different friction?)
+
+### Strip Crafting Mechanic
+
+Shears + hide/leather/pelt in the crafting grid produce strips. Strips replace whole materials as the crafting ingredient for skate straps.
+
+**Strip types:**
+
+| Strip Type | Source Material | Grid Recipe |
+|------------|----------------|-------------|
+| Rawhide strip | Raw/prepared hide | Shears + hide |
+| Leather strip | Leather (plain) | Shears + leather |
+| Fur strip | Pelt | Shears + pelt |
+
+**Yield by hide size:**
+
+| Hide Size | Strip Yield |
+|-----------|------------|
+| Small     | 2 strips   |
+| Medium    | 4 strips   |
+| Large     | 6 strips   |
+| Huge      | 8 strips   |
+
+Leather and pelt don't have sizes — fixed yield (4 strips each).
+
+**Required work:**
+- New item type: `skatestrap-strip` with variants (rawhide, leather, fur)
+- New grid recipes: shears + material → strips
+- Modify existing skate assembly recipes to use strips instead of whole hides
+- Strip texture generation (narrow texture variant) or reuse strap textures
+- New shape for strip item
+- Lang entries for strip items
 
 ## v2.0 — 3D Models & Wearables
 

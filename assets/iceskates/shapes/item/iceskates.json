@@ -5,121 +5,244 @@
   "textures": {},
   "elements": [
     {
-      "name": "Blade",
-      "from": [ 6, 0, 1 ],
-      "to": [ 10, 1, 14 ],
+      "name": "SkateR",
+      "stepParentName": "LowerFootR",
+      "from": [-0.1, -0.1, -0.2],
+      "to": [4.1, 0.6, 3.2],
       "faces": {
-        "north": { "texture": "#blade", "uv": [ 0, 0, 4, 1 ] },
-        "east":  { "texture": "#blade", "uv": [ 0, 0, 13, 1 ] },
-        "south": { "texture": "#blade", "uv": [ 0, 0, 4, 1 ] },
-        "west":  { "texture": "#blade", "uv": [ 0, 0, 13, 1 ] },
-        "up":    { "texture": "#blade", "uv": [ 0, 0, 4, 13 ] },
-        "down":  { "texture": "#blade", "uv": [ 0, 0, 4, 13 ] }
-      }
+        "north": { "texture": "#strap", "uv": [ 0, 0, 4, 1 ] },
+        "east":  { "texture": "#strap", "uv": [ 0, 0, 3, 1 ] },
+        "south": { "texture": "#strap", "uv": [ 0, 0, 4, 1 ] },
+        "west":  { "texture": "#strap", "uv": [ 0, 0, 3, 1 ] },
+        "up":    { "texture": "#strap", "uv": [ 0, 0, 4, 3 ] },
+        "down":  { "texture": "#strap", "uv": [ 0, 0, 4, 3 ] }
+      },
+      "children": [
+        {
+          "name": "BladeR",
+          "from": [ 0.5, -0.7, -0.3 ],
+          "to": [ 3.5, -0.1, 3.3 ],
+          "faces": {
+            "north": { "texture": "#blade", "uv": [ 0, 0, 3, 1 ] },
+            "east":  { "texture": "#blade", "uv": [ 0, 0, 4, 1 ] },
+            "south": { "texture": "#blade", "uv": [ 0, 0, 3, 1 ] },
+            "west":  { "texture": "#blade", "uv": [ 0, 0, 4, 1 ] },
+            "up":    { "texture": "#blade", "uv": [ 0, 0, 3, 4 ] },
+            "down":  { "texture": "#blade", "uv": [ 0, 0, 3, 4 ] }
+          }
+        },
+        {
+          "name": "BladeTipR",
+          "from": [ 1.2, -0.7, 3.3 ],
+          "to": [ 2.8, -0.1, 4.0 ],
+          "faces": {
+            "north": { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+            "east":  { "texture": "#blade", "uv": [ 4, 0, 5, 1 ] },
+            "south": { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+            "west":  { "texture": "#blade", "uv": [ 4, 0, 5, 1 ] },
+            "up":    { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+            "down":  { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] }
+          }
+        },
+        {
+          "name": "ToeBoxR",
+          "from": [ 0, 0.6, 2.0 ],
+          "to": [ 4, 2.0, 3.3 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 8, 0, 12, 2 ] },
+            "east":  { "texture": "#strap", "uv": [ 8, 0, 10, 2 ] },
+            "south": { "texture": "#strap", "uv": [ 8, 0, 12, 2 ] },
+            "west":  { "texture": "#strap", "uv": [ 8, 0, 10, 2 ] },
+            "up":    { "texture": "#strap", "uv": [ 8, 2, 12, 4 ] },
+            "down":  { "texture": "#strap", "uv": [ 8, 2, 12, 4 ] }
+          }
+        },
+        {
+          "name": "HeelR",
+          "from": [ 0, 0.6, -0.2 ],
+          "to": [ 4, 1.5, 0.8 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 16, 0, 20, 1 ] },
+            "east":  { "texture": "#strap", "uv": [ 16, 0, 17, 1 ] },
+            "south": { "texture": "#strap", "uv": [ 16, 0, 20, 1 ] },
+            "west":  { "texture": "#strap", "uv": [ 16, 0, 17, 1 ] },
+            "up":    { "texture": "#strap", "uv": [ 16, 1, 20, 2 ] },
+            "down":  { "texture": "#strap", "uv": [ 16, 1, 20, 2 ] }
+          }
+        },
+        {
+          "name": "AnkleR",
+          "from": [ 0, 0.6, 0.8 ],
+          "to": [ 4, 1.5, 2.0 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 0, 12, 4, 13 ] },
+            "east":  { "texture": "#strap", "uv": [ 0, 12, 2, 13 ] },
+            "south": { "texture": "#strap", "uv": [ 0, 12, 4, 13 ] },
+            "west":  { "texture": "#strap", "uv": [ 0, 12, 2, 13 ] },
+            "up":    { "texture": "#strap", "uv": [ 0, 13, 4, 15 ] },
+            "down":  { "texture": "#strap", "uv": [ 0, 13, 4, 15 ] }
+          }
+        },
+        {
+          "name": "ShaftR",
+          "from": [ 0.3, 1.5, 0 ],
+          "to": [ 3.7, 3.5, 2.2 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 8, 8, 12, 10 ] },
+            "east":  { "texture": "#strap", "uv": [ 8, 8, 10, 10 ] },
+            "south": { "texture": "#strap", "uv": [ 8, 8, 12, 10 ] },
+            "west":  { "texture": "#strap", "uv": [ 8, 8, 10, 10 ] },
+            "up":    { "texture": "#strap", "uv": [ 8, 10, 12, 12 ] },
+            "down":  { "texture": "#strap", "uv": [ 8, 10, 12, 12 ] }
+          }
+        },
+        {
+          "name": "CuffR",
+          "from": [ 0, 3.5, 0 ],
+          "to": [ 4, 4.0, 2.2 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 16, 8, 20, 9 ] },
+            "east":  { "texture": "#strap", "uv": [ 16, 8, 18, 9 ] },
+            "south": { "texture": "#strap", "uv": [ 16, 8, 20, 9 ] },
+            "west":  { "texture": "#strap", "uv": [ 16, 8, 18, 9 ] },
+            "up":    { "texture": "#strap", "uv": [ 16, 9, 20, 11 ] },
+            "down":  { "texture": "#strap", "uv": [ 16, 9, 20, 11 ] }
+          }
+        },
+        {
+          "name": "TongueR",
+          "from": [ 1, 1.5, 2.2 ],
+          "to": [ 3, 3.5, 2.4 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 24, 0, 26, 2 ] },
+            "east":  { "texture": "#strap", "uv": [ 24, 0, 24, 2 ] },
+            "south": { "texture": "#strap", "uv": [ 24, 0, 26, 2 ] },
+            "west":  { "texture": "#strap", "uv": [ 24, 0, 24, 2 ] },
+            "up":    { "texture": "#strap", "uv": [ 24, 2, 26, 3 ] },
+            "down":  { "texture": "#strap", "uv": [ 24, 2, 26, 3 ] }
+          }
+        }
+      ]
     },
     {
-      "name": "BladeTip",
-      "from": [ 7, 0, 14 ],
-      "to": [ 9, 1, 16 ],
+      "name": "SkateL",
+      "stepParentName": "LowerFootL",
+      "from": [-0.1, -0.1, -0.2],
+      "to": [4.1, 0.6, 3.2],
       "faces": {
-        "north": { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
-        "east":  { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
-        "south": { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
-        "west":  { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
-        "up":    { "texture": "#blade", "uv": [ 4, 0, 6, 2 ] },
-        "down":  { "texture": "#blade", "uv": [ 4, 0, 6, 2 ] }
-      }
-    },
-    {
-      "name": "Sole",
-      "from": [ 4, 1, 2 ],
-      "to": [ 12, 3, 14 ],
-      "faces": {
-        "north": { "texture": "#strap", "uv": [ 0, 0, 8, 2 ] },
-        "east":  { "texture": "#strap", "uv": [ 0, 0, 12, 2 ] },
-        "south": { "texture": "#strap", "uv": [ 0, 0, 8, 2 ] },
-        "west":  { "texture": "#strap", "uv": [ 0, 0, 12, 2 ] },
-        "up":    { "texture": "#strap", "uv": [ 0, 0, 8, 12 ] },
-        "down":  { "texture": "#strap", "uv": [ 0, 0, 8, 12 ] }
-      }
-    },
-    {
-      "name": "ToeBox",
-      "from": [ 4, 3, 10 ],
-      "to": [ 12, 7, 14 ],
-      "faces": {
-        "north": { "texture": "#strap", "uv": [ 8, 0, 16, 4 ] },
-        "east":  { "texture": "#strap", "uv": [ 8, 0, 12, 4 ] },
-        "south": { "texture": "#strap", "uv": [ 8, 0, 16, 4 ] },
-        "west":  { "texture": "#strap", "uv": [ 8, 0, 12, 4 ] },
-        "up":    { "texture": "#strap", "uv": [ 8, 4, 16, 8 ] },
-        "down":  { "texture": "#strap", "uv": [ 8, 4, 16, 8 ] }
-      }
-    },
-    {
-      "name": "Heel",
-      "from": [ 4, 3, 2 ],
-      "to": [ 12, 6, 5 ],
-      "faces": {
-        "north": { "texture": "#strap", "uv": [ 16, 0, 24, 3 ] },
-        "east":  { "texture": "#strap", "uv": [ 16, 0, 19, 3 ] },
-        "south": { "texture": "#strap", "uv": [ 16, 0, 24, 3 ] },
-        "west":  { "texture": "#strap", "uv": [ 16, 0, 19, 3 ] },
-        "up":    { "texture": "#strap", "uv": [ 16, 3, 24, 6 ] },
-        "down":  { "texture": "#strap", "uv": [ 16, 3, 24, 6 ] }
-      }
-    },
-    {
-      "name": "Ankle",
-      "from": [ 4, 3, 5 ],
-      "to": [ 12, 6, 10 ],
-      "faces": {
-        "north": { "texture": "#strap", "uv": [ 0, 12, 8, 15 ] },
-        "east":  { "texture": "#strap", "uv": [ 0, 12, 5, 15 ] },
-        "south": { "texture": "#strap", "uv": [ 0, 12, 8, 15 ] },
-        "west":  { "texture": "#strap", "uv": [ 0, 12, 5, 15 ] },
-        "up":    { "texture": "#strap", "uv": [ 0, 15, 8, 20 ] },
-        "down":  { "texture": "#strap", "uv": [ 0, 15, 8, 20 ] }
-      }
-    },
-    {
-      "name": "Shaft",
-      "from": [ 5, 6, 3 ],
-      "to": [ 11, 12, 10 ],
-      "faces": {
-        "north": { "texture": "#strap", "uv": [ 8, 8, 14, 14 ] },
-        "east":  { "texture": "#strap", "uv": [ 8, 8, 15, 14 ] },
-        "south": { "texture": "#strap", "uv": [ 8, 8, 14, 14 ] },
-        "west":  { "texture": "#strap", "uv": [ 8, 8, 15, 14 ] },
-        "up":    { "texture": "#strap", "uv": [ 8, 14, 14, 21 ] },
-        "down":  { "texture": "#strap", "uv": [ 8, 14, 14, 21 ] }
-      }
-    },
-    {
-      "name": "Cuff",
-      "from": [ 4, 12, 3 ],
-      "to": [ 12, 13, 10 ],
-      "faces": {
-        "north": { "texture": "#strap", "uv": [ 16, 8, 24, 9 ] },
-        "east":  { "texture": "#strap", "uv": [ 16, 8, 23, 9 ] },
-        "south": { "texture": "#strap", "uv": [ 16, 8, 24, 9 ] },
-        "west":  { "texture": "#strap", "uv": [ 16, 8, 23, 9 ] },
-        "up":    { "texture": "#strap", "uv": [ 16, 9, 24, 16 ] },
-        "down":  { "texture": "#strap", "uv": [ 16, 9, 24, 16 ] }
-      }
-    },
-    {
-      "name": "Tongue",
-      "from": [ 6, 6, 10 ],
-      "to": [ 10, 12, 11 ],
-      "faces": {
-        "north": { "texture": "#strap", "uv": [ 24, 0, 28, 6 ] },
-        "east":  { "texture": "#strap", "uv": [ 24, 0, 25, 6 ] },
-        "south": { "texture": "#strap", "uv": [ 24, 0, 28, 6 ] },
-        "west":  { "texture": "#strap", "uv": [ 24, 0, 25, 6 ] },
-        "up":    { "texture": "#strap", "uv": [ 24, 6, 28, 7 ] },
-        "down":  { "texture": "#strap", "uv": [ 24, 6, 28, 7 ] }
-      }
+        "north": { "texture": "#strap", "uv": [ 0, 0, 4, 1 ] },
+        "east":  { "texture": "#strap", "uv": [ 0, 0, 3, 1 ] },
+        "south": { "texture": "#strap", "uv": [ 0, 0, 4, 1 ] },
+        "west":  { "texture": "#strap", "uv": [ 0, 0, 3, 1 ] },
+        "up":    { "texture": "#strap", "uv": [ 0, 0, 4, 3 ] },
+        "down":  { "texture": "#strap", "uv": [ 0, 0, 4, 3 ] }
+      },
+      "children": [
+        {
+          "name": "BladeL",
+          "from": [ 0.5, -0.7, -0.3 ],
+          "to": [ 3.5, -0.1, 3.3 ],
+          "faces": {
+            "north": { "texture": "#blade", "uv": [ 0, 0, 3, 1 ] },
+            "east":  { "texture": "#blade", "uv": [ 0, 0, 4, 1 ] },
+            "south": { "texture": "#blade", "uv": [ 0, 0, 3, 1 ] },
+            "west":  { "texture": "#blade", "uv": [ 0, 0, 4, 1 ] },
+            "up":    { "texture": "#blade", "uv": [ 0, 0, 3, 4 ] },
+            "down":  { "texture": "#blade", "uv": [ 0, 0, 3, 4 ] }
+          }
+        },
+        {
+          "name": "BladeTipL",
+          "from": [ 1.2, -0.7, 3.3 ],
+          "to": [ 2.8, -0.1, 4.0 ],
+          "faces": {
+            "north": { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+            "east":  { "texture": "#blade", "uv": [ 4, 0, 5, 1 ] },
+            "south": { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+            "west":  { "texture": "#blade", "uv": [ 4, 0, 5, 1 ] },
+            "up":    { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] },
+            "down":  { "texture": "#blade", "uv": [ 4, 0, 6, 1 ] }
+          }
+        },
+        {
+          "name": "ToeBoxL",
+          "from": [ 0, 0.6, 2.0 ],
+          "to": [ 4, 2.0, 3.3 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 8, 0, 12, 2 ] },
+            "east":  { "texture": "#strap", "uv": [ 8, 0, 10, 2 ] },
+            "south": { "texture": "#strap", "uv": [ 8, 0, 12, 2 ] },
+            "west":  { "texture": "#strap", "uv": [ 8, 0, 10, 2 ] },
+            "up":    { "texture": "#strap", "uv": [ 8, 2, 12, 4 ] },
+            "down":  { "texture": "#strap", "uv": [ 8, 2, 12, 4 ] }
+          }
+        },
+        {
+          "name": "HeelL",
+          "from": [ 0, 0.6, -0.2 ],
+          "to": [ 4, 1.5, 0.8 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 16, 0, 20, 1 ] },
+            "east":  { "texture": "#strap", "uv": [ 16, 0, 17, 1 ] },
+            "south": { "texture": "#strap", "uv": [ 16, 0, 20, 1 ] },
+            "west":  { "texture": "#strap", "uv": [ 16, 0, 17, 1 ] },
+            "up":    { "texture": "#strap", "uv": [ 16, 1, 20, 2 ] },
+            "down":  { "texture": "#strap", "uv": [ 16, 1, 20, 2 ] }
+          }
+        },
+        {
+          "name": "AnkleL",
+          "from": [ 0, 0.6, 0.8 ],
+          "to": [ 4, 1.5, 2.0 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 0, 12, 4, 13 ] },
+            "east":  { "texture": "#strap", "uv": [ 0, 12, 2, 13 ] },
+            "south": { "texture": "#strap", "uv": [ 0, 12, 4, 13 ] },
+            "west":  { "texture": "#strap", "uv": [ 0, 12, 2, 13 ] },
+            "up":    { "texture": "#strap", "uv": [ 0, 13, 4, 15 ] },
+            "down":  { "texture": "#strap", "uv": [ 0, 13, 4, 15 ] }
+          }
+        },
+        {
+          "name": "ShaftL",
+          "from": [ 0.3, 1.5, 0 ],
+          "to": [ 3.7, 3.5, 2.2 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 8, 8, 12, 10 ] },
+            "east":  { "texture": "#strap", "uv": [ 8, 8, 10, 10 ] },
+            "south": { "texture": "#strap", "uv": [ 8, 8, 12, 10 ] },
+            "west":  { "texture": "#strap", "uv": [ 8, 8, 10, 10 ] },
+            "up":    { "texture": "#strap", "uv": [ 8, 10, 12, 12 ] },
+            "down":  { "texture": "#strap", "uv": [ 8, 10, 12, 12 ] }
+          }
+        },
+        {
+          "name": "CuffL",
+          "from": [ 0, 3.5, 0 ],
+          "to": [ 4, 4.0, 2.2 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 16, 8, 20, 9 ] },
+            "east":  { "texture": "#strap", "uv": [ 16, 8, 18, 9 ] },
+            "south": { "texture": "#strap", "uv": [ 16, 8, 20, 9 ] },
+            "west":  { "texture": "#strap", "uv": [ 16, 8, 18, 9 ] },
+            "up":    { "texture": "#strap", "uv": [ 16, 9, 20, 11 ] },
+            "down":  { "texture": "#strap", "uv": [ 16, 9, 20, 11 ] }
+          }
+        },
+        {
+          "name": "TongueL",
+          "from": [ 1, 1.5, 2.2 ],
+          "to": [ 3, 3.5, 2.4 ],
+          "faces": {
+            "north": { "texture": "#strap", "uv": [ 24, 0, 26, 2 ] },
+            "east":  { "texture": "#strap", "uv": [ 24, 0, 24, 2 ] },
+            "south": { "texture": "#strap", "uv": [ 24, 0, 26, 2 ] },
+            "west":  { "texture": "#strap", "uv": [ 24, 0, 24, 2 ] },
+            "up":    { "texture": "#strap", "uv": [ 24, 2, 26, 3 ] },
+            "down":  { "texture": "#strap", "uv": [ 24, 2, 26, 3 ] }
+          }
+        }
+      ]
     }
   ]
 }

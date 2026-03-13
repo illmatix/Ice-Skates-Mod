@@ -34,6 +34,7 @@
     "clothing": ["*"]
   },
   "storageFlags": 128,
+  "renderAlphaTest": 0.25,
   "shape": { "base": "iceskates:item/iceskates" },
   "textures": {
     "blade": { "base": "iceskates:item/skateblade-{blade}" },
@@ -41,6 +42,7 @@
   },
   "attributes": {
     "clothescategory": "foot",
+    "wearableAttachment": true,
     "warmthByType": {
       "iceskates-*-rawhide": 0.5,
       "iceskates-*-leather": 1.0,
@@ -77,15 +79,25 @@
     }
   },
   "groundTransform": {
-    "translation": { "x": 0, "y": 0, "z": 0 },
-    "rotation": { "x": 0, "y": 0, "z": 90 },
-    "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
-    "scale": 3.0
+    "translation": { "x": 0.05, "y": 0.02, "z": 0 },
+    "rotation": { "x": 0, "y": 0, "z": 0 },
+    "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+    "scale": 3.11
   },
   "guiTransform": {
-    "translation": { "x": 0, "y": 0, "z": 0 },
-    "rotation": { "x": -30, "y": 45, "z": 0 },
-    "origin": { "x": 0.5, "y": 0.35, "z": 0.5 },
+    "translation": { "x": 2, "y": 0, "z": 18 },
+    "rotation": { "x": 152, "y": -136, "z": -4 },
+    "origin": { "x": 0.49, "y": 0.16, "z": 0.54 },
+    "scale": 2.84
+  },
+  "tpHandTransform": {
+    "translation": { "x": -0.71, "y": -0.66, "z": -0.84 },
+    "rotation": { "x": 48, "y": 88, "z": 53 },
+    "scale": 0.71
+  },
+  "fpHandTransform": {
+    "translation": { "x": 0.7, "y": 0.1, "z": -0.4 },
+    "rotation": { "x": -33, "y": 10, "z": -24 },
     "scale": 2.5
   }
 }
