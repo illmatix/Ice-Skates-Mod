@@ -1,0 +1,83 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version
+        id: version
+        run: echo "version=$(jq -r .version modinfo.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Check if release exists
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "v${{ steps.version.outputs.version }}" > /dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup .NET
+        if: steps.check.outputs.exists == 'false'
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Cache VS DLLs
+        if: steps.check.outputs.exists == 'false'
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ~/vs-game
+          key: vs-game-1.21.6
+
+      - name: Download VS DLLs
+        if: steps.check.outputs.exists == 'false' && steps.cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/vs-game/Mods ~/vs-game/Lib /tmp/vs-extract
+          curl -sSL https://cdn.vintagestory.at/gamefiles/stable/vs_client_linux-x64_1.21.6.tar.gz \
+            | tar xz -C /tmp/vs-extract
+          VS_ROOT=$(find /tmp/vs-extract -name "VintagestoryAPI.dll" -printf '%h\n' -quit)
+          cp "$VS_ROOT"/VintagestoryAPI.dll ~/vs-game/
+          cp "$VS_ROOT"/VintagestoryLib.dll ~/vs-game/
+          cp "$VS_ROOT"/Vintagestory.dll ~/vs-game/
+          cp "$VS_ROOT"/Mods/VSSurvivalMod.dll ~/vs-game/Mods/
+          cp "$VS_ROOT"/Lib/SkiaSharp.dll ~/vs-game/Lib/
+          cp "$VS_ROOT"/Lib/Newtonsoft.Json.dll ~/vs-game/Lib/
+          rm -rf /tmp/vs-extract
+
+      - name: Build
+        if: steps.check.outputs.exists == 'false'
+        run: dotnet build -c Release -p:VintageStoryPath=$HOME/vs-game
+
+      - name: Package ZIP
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          mkdir -p /tmp/package
+          cp bin/Release/IceSkates.dll /tmp/package/
+          cp modinfo.json /tmp/package/
+          cp -r assets /tmp/package/
+          cd /tmp/package
+          zip -r "$GITHUB_WORKSPACE/IceSkates-v${VERSION}.zip" .
+
+      - name: Create GitHub Release
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          gh release create "v${VERSION}" "IceSkates-v${VERSION}.zip" \
+            --title "Ice Skates v${VERSION}" \
+            --generate-notes
