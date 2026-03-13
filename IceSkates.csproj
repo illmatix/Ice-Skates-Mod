@@ -53,6 +53,9 @@
     <Copy SourceFiles="$(OutputPath)/$(AssemblyName).pdb" DestinationFolder="$(ModOutputDir)" Condition="Exists('$(OutputPath)/$(AssemblyName).pdb')" />
     <Copy SourceFiles="$(ProjectDir)/modinfo.json" DestinationFolder="$(ModOutputDir)" />
 
+    <!-- Clean old assets to prevent stale files -->
+    <RemoveDir Directories="$(ModOutputDir)/assets" />
+
     <!-- Copy assets folder -->
     <ItemGroup>
       <AssetFiles Include="$(ProjectDir)/assets/**/*" />
