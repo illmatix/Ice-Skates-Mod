@@ -94,6 +94,13 @@ namespace IceSkates
                     UpdateSkatingPhysics(playerEntity, config);
             }
 
+            // Re-assert velocity every server tick to minimize engine drag window
+            if (isSkating && isServer)
+            {
+                playerEntity.ServerPos.Motion.X = skateVelX;
+                playerEntity.ServerPos.Motion.Z = skateVelZ;
+            }
+
             // --- Client-side debug state (mirrors server debug values for HUD) ---
             if (isClient && isSkating)
                 UpdateClientDebugState(playerEntity, config);
@@ -251,9 +258,7 @@ namespace IceSkates
             if (controls.Sprint)
                 effectiveMaxSpeed *= sprintMult;
 
-            double motionX = playerEntity.Pos.Motion.X;
-            double motionZ = playerEntity.Pos.Motion.Z;
-            double speed = Math.Sqrt(motionX * motionX + motionZ * motionZ);
+            double speed = entity.WatchedAttributes.GetDouble("iceskates:speed", 0);
 
             if (controls.Backward && speed > 0.001)
                 DebugInputState = SkateInputState.Brake;
@@ -333,6 +338,16 @@ namespace IceSkates
                 }
 
                 DebugCurrentHungerMod = netHungerMod;
+
+                // Sync internal speed to client for debug HUD
+                if (isServer)
+                {
+                    entity.WatchedAttributes.SetDouble("iceskates:speed",
+                        Math.Sqrt(skateVelX * skateVelX + skateVelZ * skateVelZ));
+                    entity.WatchedAttributes.SetDouble("iceskates:velX", skateVelX);
+                    entity.WatchedAttributes.SetDouble("iceskates:velZ", skateVelZ);
+                    entity.WatchedAttributes.MarkPathDirty("iceskates:speed");
+                }
 
                 // --- Durability ---
                 double curSpeed = Math.Sqrt(skateVelX * skateVelX + skateVelZ * skateVelZ);
@@ -414,6 +429,10 @@ namespace IceSkates
             {
                 playerEntity.ServerPos.Motion.X = 0;
                 playerEntity.ServerPos.Motion.Z = 0;
+                entity.WatchedAttributes.SetDouble("iceskates:speed", 0);
+                entity.WatchedAttributes.SetDouble("iceskates:velX", 0);
+                entity.WatchedAttributes.SetDouble("iceskates:velZ", 0);
+                entity.WatchedAttributes.MarkPathDirty("iceskates:speed");
             }
         }
 
@@ -421,7 +440,10 @@ namespace IceSkates
         {
             if (snowParticles == null) return;
 
-            double speed = Math.Sqrt(skateVelX * skateVelX + skateVelZ * skateVelZ);
+            // Read synced velocity from WatchedAttributes (server writes these)
+            double velX = entity.WatchedAttributes.GetDouble("iceskates:velX", 0);
+            double velZ = entity.WatchedAttributes.GetDouble("iceskates:velZ", 0);
+            double speed = Math.Sqrt(velX * velX + velZ * velZ);
             if (speed < 0.005) return;
 
             // Determine input state from client controls
@@ -438,8 +460,8 @@ namespace IceSkates
             else
                 clientInput = SkateInputState.None;
 
-            double dirX = speed > 0.001 ? skateVelX / speed : 0;
-            double dirZ = speed > 0.001 ? skateVelZ / speed : 0;
+            double dirX = speed > 0.001 ? velX / speed : 0;
+            double dirZ = speed > 0.001 ? velZ / speed : 0;
 
             Vec3d feetPos = player.Pos.XYZ.Clone();
             feetPos.Y += 0.05;

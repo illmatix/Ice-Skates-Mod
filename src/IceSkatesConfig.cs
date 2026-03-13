@@ -86,8 +86,8 @@ namespace IceSkates
         /// <summary>Higher speed = wider turns. Default 3.0.</summary>
         public float TurnRateSpeedFalloff { get; set; } = 3.0f;
 
-        /// <summary>Per-tick velocity multiplier when coasting on ice (1.0 = no friction). Default 0.993.</summary>
-        public float CoastFriction { get; set; } = 0.993f;
+        /// <summary>Per-tick velocity multiplier when coasting on ice (1.0 = no friction). Default 0.998.</summary>
+        public float CoastFriction { get; set; } = 0.998f;
 
         /// <summary>Thrust and max speed multiplier when sprinting. Default 1.4.</summary>
         public float SprintMultiplier { get; set; } = 1.4f;

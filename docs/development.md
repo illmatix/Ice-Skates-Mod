@@ -18,6 +18,12 @@ Quick test: Drop entire folder with `.cs` files into `Mods/` — VS compiles at 
 
 Tip: Match vanilla tool head color palettes. Silver and gold should be recognizably shiny/precious.
 
+## VS Wearable Gotchas
+
+- **`wearableAttachment: true`** — Required in `attributes` for any wearable whose shape uses `stepParentName` bone attachments. Without it, GUI icons are invisible (bones can't be resolved outside entity context). See [Architecture > GUI Icon Rendering](architecture.md#gui-icon-rendering-wearableattachment).
+- **`storageFlags: 128`** — Required for equippable items.
+- **`clothescategory`** — Goes inside `attributes` (lowercase), not top-level.
+
 ## Future Ideas
 
 - [ ] 3D models + wearable shapes on player feet

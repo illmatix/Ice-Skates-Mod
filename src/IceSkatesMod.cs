@@ -57,6 +57,12 @@ namespace IceSkates
                 });
         }
 
+        public override void AssetsLoaded(ICoreAPI api)
+        {
+            base.AssetsLoaded(api);
+            TextureGenerator.GenerateAndInject(api);
+        }
+
         /// <summary>
         /// After assets load, prune disabled metals: remove smithing recipes
         /// and clear creative inventory for any configurable metal that's off.
