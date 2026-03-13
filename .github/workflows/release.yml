@@ -7,35 +7,67 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Extract version
-        id: version
-        run: echo "version=$(jq -r .version modinfo.json)" >> "$GITHUB_OUTPUT"
-
-      - name: Check if release exists
-        id: check
+      - name: Determine version bump
+        id: bump
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh release view "v${{ steps.version.outputs.version }}" > /dev/null 2>&1; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
+          PR_NUMBER=$(gh pr list --state merged --base main --json number,mergeCommit \
+            --jq ".[] | select(.mergeCommit.oid == \"$GITHUB_SHA\") | .number")
+          BUMP="patch"
+          if [ -n "$PR_NUMBER" ]; then
+            LABELS=$(gh pr view "$PR_NUMBER" --json labels --jq '.labels[].name')
+            if echo "$LABELS" | grep -q "version:major"; then
+              BUMP="major"
+            elif echo "$LABELS" | grep -q "version:minor"; then
+              BUMP="minor"
+            fi
           fi
+          echo "bump=$BUMP" >> "$GITHUB_OUTPUT"
+
+      - name: Calculate next version
+        id: version
+        run: |
+          LATEST=$(git tag -l 'v*' --sort=-v:refname | head -n1)
+          if [ -z "$LATEST" ]; then
+            NEXT="1.0.0"
+          else
+            VER="${LATEST#v}"
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$VER"
+            BUMP="${{ steps.bump.outputs.bump }}"
+            if [ "$BUMP" = "major" ]; then
+              NEXT="$((MAJOR + 1)).0.0"
+            elif [ "$BUMP" = "minor" ]; then
+              NEXT="${MAJOR}.$((MINOR + 1)).0"
+            else
+              NEXT="${MAJOR}.${MINOR}.$((PATCH + 1))"
+            fi
+          fi
+          echo "version=$NEXT" >> "$GITHUB_OUTPUT"
+
+      - name: Inject version into modinfo.json
+        run: |
+          jq --arg v "${{ steps.version.outputs.version }}" \
+            '.version = $v' modinfo.json > modinfo.tmp && mv modinfo.tmp modinfo.json
 
       - name: Setup .NET
-        if: steps.check.outputs.exists == 'false'
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
       - name: Cache VS DLLs
-        if: steps.check.outputs.exists == 'false'
         id: cache
         uses: actions/cache@v4
         with:
@@ -43,7 +75,7 @@ jobs:
           key: vs-game-1.21.6
 
       - name: Download VS DLLs
-        if: steps.check.outputs.exists == 'false' && steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p ~/vs-game/Mods ~/vs-game/Lib /tmp/vs-extract
           curl -sSL https://cdn.vintagestory.at/gamefiles/stable/vs_client_linux-x64_1.21.6.tar.gz \
@@ -58,11 +90,9 @@ jobs:
           rm -rf /tmp/vs-extract
 
       - name: Build
-        if: steps.check.outputs.exists == 'false'
         run: dotnet build -c Release -p:VintageStoryPath=$HOME/vs-game
 
       - name: Package ZIP
-        if: steps.check.outputs.exists == 'false'
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           mkdir -p /tmp/package
@@ -73,7 +103,6 @@ jobs:
           zip -r "$GITHUB_WORKSPACE/IceSkates-v${VERSION}.zip" .
 
       - name: Create GitHub Release
-        if: steps.check.outputs.exists == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
